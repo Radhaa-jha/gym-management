@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gym Management System</title>
+  <link rel="stylesheet" href="addmcss.css">
+</head>
+<body>
+  <header>
+    <h1>FITPRO GYM </h1>
+  </header>
+
+  <div class="container">
+    <div class="form-section">
+      <h2>Add New Member</h2>
+      <form id="memberForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="number" id="age" placeholder="Age" required />
+        <input type="email" id="email" placeholder="email" required />
+        <input type="password" id="password" placeholder="password" required/>
+        <select id="plan" required>
+          <option value="">Select Plan</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Quarterly">Quarterly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+        <button type="submit">Add Member</button>
+      </form>
+    </div>
+
+    <div class="members-section">
+      <h2>Members List</h2>
+      <div id="memberList">
+        <!-- Member cards will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="add_member.js"></script>
+
+</body>
+</html>

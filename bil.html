@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProFit Gym Billing System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                  url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .container {
+      background: rgba(34, 34, 34, 0.95);
+      padding: 35px 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 480px;
+      backdrop-filter: blur(5px);
+      border: 1px solid #ff5e00;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo h1 {
+      font-size: 32px;
+      color: #ff5e00;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo p {
+      color: #bbb;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f2f2f2;
+      font-size: 26px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #ff5e00;
+      border-radius: 3px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #ddd;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .input-icon {
+      position: relative;
+    }
+
+    .input-icon i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #777;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #2a2a2a;
+      color: #f0f0f0;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #ff5e00;
+      box-shadow: 0 0 0 2px rgba(255, 94, 0, 0.2);
+    }
+
+    /* Payment Options Styling */
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .payment-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 5px;
+      border-radius: 8px;
+      background: #2a2a2a;
+      border: 2px solid #444;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .payment-option i {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #bbb;
+    }
+
+    .payment-option span {
+      font-size: 12px;
+      color: #ddd;
+      text-align: center;
+    }
+
+    .payment-option.selected {
+      border-color: #ff5e00;
+      background: rgba(255, 94, 0, 0.1);
+    }
+
+    .payment-option.selected i {
+      color: #ff5e00;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #ff5e00, #e65100);
+      color: white;
+      font-size: 17px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ff6f1c, #ff5e00);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .receipt {
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 12px;
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid #ff5e00;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .receipt h3 {
+      margin-top: 0;
+      color: #ff5e00;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 22px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .receipt h3::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: #ff5e00;
+    }
+
+    .receipt p {
+      margin: 12px 0;
+      font-size: 16px;
+      color: #e2e2e2;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .receipt p span:last-child {
+      font-weight: 600;
+      color: #ff9d5c;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      margin-top: 20px;
+    }
+
+    .print-btn:hover {
+      background: linear-gradient(135deg, #1e88e5, #007bff);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .success-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(40, 167, 69, 0.9);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: slideDown 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .error-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(220, 53, 69, 0.9);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: slideDown 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @keyframes slideDown {
+      from { top: -100px; opacity: 0; }
+      to { top: 20px; opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .loader {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 25px;
+        margin: 15px;
+      }
+      
+      .logo h1 {
+        font-size: 26px;
+      }
+      
+      h2 {
+        font-size: 22px;
+      }
+      
+      .receipt {
+        padding: 15px;
+      }
+      
+      .payment-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <h1><i class="fas fa-dumbbell"></i> ProFit Gym</h1>
+      <p>Fitness & Billing Management</p>
+    </div>
+
+    <h2>Generate Member Bill</h2>
+
+    <div class="form-group">
+      <label for="emailInput">Member Email</label>
+      <div class="input-icon">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="emailInput" placeholder="Enter member's email" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="amountInput">Amount Paid (₹)</label>
+      <div class="input-icon">
+        <i class="fas fa-rupee-sign"></i>
+        <input type="number" id="amountInput" placeholder="Enter amount paid" required />
+      </div>
+    </div>
+
+    <!-- Payment Options Section -->
+    <div class="form-group">
+      <label>Payment Method</label>
+      <div class="payment-options">
+        <div class="payment-option selected" data-method="cash" onclick="selectPaymentMethod(this, 'cash')">
+          <i class="fas fa-money-bill-wave"></i>
+          <span>Cash</span>
+        </div>
+        <div class="payment-option" data-method="card" onclick="selectPaymentMethod(this, 'card')">
+          <i class="fas fa-credit-card"></i>
+          <span>Card</span>
+        </div>
+        <div class="payment-option" data-method="upi" onclick="selectPaymentMethod(this, 'upi')">
+          <i class="fas fa-mobile-alt"></i>
+          <span>UPI</span>
+        </div>
+        <div class="payment-option" data-method="bank" onclick="selectPaymentMethod(this, 'bank')">
+          <i class="fas fa-university"></i>
+          <span>Bank</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="generateBill()" id="generateBtn">
+      <i class="fas fa-file-invoice-dollar"></i> Generate & Save Bill
+    </button>
+
+    <div class="receipt" id="receipt" style="display:none;">
+      <h3>Billing Receipt</h3>
+      <p><span>Name:</span> <span id="nameDisplay">John Doe</span></p>
+      <p><span>Email:</span> <span id="emailDisplay">john@example.com</span></p>
+      <p><span>Age:</span> <span id="ageDisplay">28</span></p>
+      <p><span>Plan:</span> <span id="planDisplay">Premium</span></p>
+      <p><span>Amount Paid:</span> <span>₹<span id="amountDisplay">2500</span></span></p>
+      <p><span>Payment Method:</span> <span id="paymentMethodDisplay">Cash</span></p>
+      <p><span>Date:</span> <span id="dateDisplay">June 18, 2025</span></p>
+      <p><span>Invoice ID:</span> <span id="invoiceDisplay">INV-2025-0068</span></p>
+      <button class="print-btn" onclick="window.print()">
+        <i class="fas fa-print"></i> Print Bill
+      </button>
+    </div>
+    
+    <div class="footer">
+      <p>&copy; 2025 ProFit Gym Management System</p>
+    </div>
+  </div>
+
+  <!-- Firebase SDK Integration -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, get, child ,push} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+//add your firebase configuration
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Payment method state
+    let selectedMethod = 'cash';
+    
+    function selectPaymentMethod(element, method) {
+      // Remove selected class from all options
+      document.querySelectorAll('.payment-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      
+      // Add selected class to clicked option
+      element.classList.add('selected');
+      selectedMethod = method;
+    }
+    
+    // Function to fetch member data from Firebase
+    async function getMemberByEmail(email) {
+      try {
+        const snapshot = await get(child(ref(db), 'members'));
+        if (snapshot.exists()) {
+          const members = snapshot.val();
+          for (const uid in members) {
+            if (members[uid].email === email) {
+              return { uid, ...members[uid] };
+            }
+          }
+        }
+        return null;
+      } catch (error) {
+        console.error("Error fetching member data:", error);
+        return null;
+      }
+    }
+
+    // Function to generate bill
+    async function generateBill() {
+  const email = document.getElementById("emailInput").value.trim();
+  const amount = document.getElementById("amountInput").value;
+  const generateBtn = document.getElementById("generateBtn");
+
+  if (!email || !amount) {
+    showMessage("Please fill in all fields", "error");
+    return;
+  }
+
+  generateBtn.innerHTML = '<div class="loader"></div> Processing...';
+  generateBtn.disabled = true;
+
+  try {
+    const memberData = await getMemberByEmail(email);
+
+    if (memberData) {
+      const { name, age, plan } = memberData;
+      const date = new Date().toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      const invoiceId = `INV-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+      document.getElementById("nameDisplay").textContent = name || 'N/A';
+      document.getElementById("emailDisplay").textContent = email;
+      document.getElementById("ageDisplay").textContent = age || 'N/A';
+      document.getElementById("planDisplay").textContent = plan || 'N/A';
+      document.getElementById("amountDisplay").textContent = amount;
+      document.getElementById("paymentMethodDisplay").textContent = selectedMethod.charAt(0).toUpperCase() + selectedMethod.slice(1);
+      document.getElementById("dateDisplay").textContent = date;
+      document.getElementById("invoiceDisplay").textContent = invoiceId;
+
+      document.getElementById("receipt").style.display = "block";
+
+      showMessage("Bill generated successfully!", "success");
+// Show receipt
+document.getElementById("receipt").style.display = "block";
+
+// Show success message
+showMessage("Bill generated successfully!", "success");
+
+// Scroll to receipt
+document.getElementById("receipt").scrollIntoView({ behavior: 'smooth' });
+
+// ✅ Save bill to Firebase
+const billRef = ref(db, 'bills');
+await push(billRef, {
+  invoiceId,
+  name: name || 'N/A',
+  email: email,
+  age: age || 'N/A',
+  plan: plan || 'N/A',
+  amount: amount,
+  paymentMethod: selectedMethod,
+  date: date,
+  createdAt: new Date().toISOString()
+});
+
+// ✅ Save as PDF
+const receiptElement = document.getElementById("receipt");
+html2pdf()
+  .set({
+    margin: 10,
+    filename: `Invoice_${email.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  })
+  .from(receiptElement)
+  .save();
+
+
+    } else {
+      showMessage("Member not found with this email", "error");
+    }
+  } catch (error) {
+    console.error("Error generating bill:", error);
+    showMessage("Error generating bill. Please try again.", "error");
+  } finally {
+    generateBtn.innerHTML = '<i class="fas fa-file-invoice-dollar"></i> Generate & Save Bill';
+    generateBtn.disabled = false;
+  }
+}
+
+    
+    // Function to show messages
+    function showMessage(message, type) {
+      const msgEl = document.createElement('div');
+      msgEl.className = type === "success" ? 'success-message' : 'error-message';
+      msgEl.innerHTML = `<i class="fas ${type === "success" ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+      document.body.appendChild(msgEl);
+      
+      // Remove after animation
+      setTimeout(() => {
+        msgEl.remove();
+      }, 3000);
+    }
+    
+    
+    // Make generateBill function available globally
+    window.generateBill = generateBill;
+    window.selectPaymentMethod = selectPaymentMethod;
+  </script>
+</body>
+</html>

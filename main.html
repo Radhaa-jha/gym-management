@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife Gym Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="maincss.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Fit<span>Pro</span></h2>
+                <p>Gym Management</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="add_member.html"><i class="fas fa-users"></i> Members</a></li>
+                <li><a href="bil.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a></li>
+                <!--<li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>-->
+                <li><a href="update-delete.html"><i class="fas fa-chart-bar"></i> update/delete member</a></li>
+         
+                <li><a href="diet.html"><i class="fas fa-utensils"></i> Diet Plans</a></li>
+                <!--<li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>-->
+           
+              <ul>
+  <li>
+    <a href="#" id="logoutBtn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </li>
+</ul>
+
+
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="user-area">
+                    <div class="notification">
+                       <!--<i class="fas fa-bell"></i>--> 
+                        <!--<span class="badge">3</span>-->
+                    </div>
+                    <div class="user-profile">
+                        <p>Radha Jha<p>
+                        <!--<span>Admin</span>-->
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <button class="btn"><i class="fas fa-plus"></i> Add Member</button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Total Members</h3>
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-body">
+                            <h2>248</h2>
+                            <p><span class="status active">+12 this month</span></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Revenue</h3>
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="card-body">
+                            <h2>$24,560</h2>
+                            <p><span class="status active">+8% this month</span></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pending Bills</h3>
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="card-body">
+                            <h2>18</h2>
+                            <p><span class="status pending">$2,800 total</span></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Supplements Stock</h3>
+                            <i class="fas fa-capsules"></i>
+                        </div>
+                        <div class="card-body">
+                            <h2>42 Items</h2>
+                            <p><span class="status pending">5 low stock</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modules Section -->
+                <div class="page-title">
+                    <h1>Modules</h1>
+                </div>
+
+                <div class="module-grid">
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>Add Member</h3>
+                        <p>Register new gym members with personal details and package selection</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <h3>Update/Delete Members</h3>
+                        <p>Manage member profiles, update information, or remove members</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <h3>Create Bills</h3>
+                        <p>Generate and manage invoices for membership fees and supplements</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3>Assign Fee Package</h3>
+                        <p>Assign or change membership packages for gym members</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Notifications</h3>
+                        <p>Send monthly reminders and custom notifications to members</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <h3>Report Export</h3>
+                        <p>Generate and export financial, attendance, and inventory reports</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Supplement Store</h3>
+                        <p>Manage inventory and sales of gym supplements and merchandise</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h3>Diet Details</h3>
+                        <p>Create and assign personalized diet plans to members</p>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+
+  <!-- Load Firebase SDK v9+ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+  //add your firebase
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      signOut(auth).then(() => {
+        console.log("User signed out.");
+        window.location.href = 'dashboard.html';
+      }).catch((error) => {
+        console.error("Sign out error:", error);
+        alert("Logout failed: " + error.message);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

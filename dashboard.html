@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit Gym - Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="dashboardcss.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-dumbbell"></i>
+                    FitPro
+                </a>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#classes">Classes</a></li>
+                    <li><a href="#membership">Membership</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="login.html" class="btn" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Body, Transform Your Life</h1>
+                <p>Join our state-of-the-art gym with expert trainers and customized workout plans to achieve your fitness goals.</p>
+                <div class="hero-btns">
+                    <a href="register.html" class="btn" id="registerBtn">Join Now</a>
+                    <a href="#classes" class="btn btn-secondary">Our Classes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>We offer the best fitness experience with modern equipment and professional trainers</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Modern Equipment</h3>
+                    <p>Our gym is equipped with the latest fitness machines and tools to enhance your workout experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Expert Trainers</h3>
+                    <p>Certified trainers with years of experience to guide you through your fitness journey.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Monitoring</h3>
+                    <p>Regular health checkups and progress tracking to ensure you're on the right path.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section class="classes" id="classes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Classes</h2>
+                <p>We offer a variety of fitness classes to suit all levels and interests</p>
+            </div>
+            <div class="classes-grid">
+                <div class="class-card">
+                    <div class="class-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Crossfit Class">
+                    </div>
+                    <div class="class-content">
+                        <h3>Crossfit Training</h3>
+                        <p>High-intensity interval training with functional movements for all fitness levels.</p>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 60 min</span>
+                            <span><i class="fas fa-user"></i> 15 spots</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <div class="class-img">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Yoga Class">
+                    </div>
+                    <div class="class-content">
+                        <h3>Yoga & Meditation</h3>
+                        <p>Improve flexibility, balance and mental clarity with our yoga sessions.</p>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 45 min</span>
+                            <span><i class="fas fa-user"></i> 20 spots</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <div class="class-img">
+                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cardio Class">
+                    </div>
+                    <div class="class-content">
+                        <h3>Cardio Blast</h3>
+                        <p>Energetic cardio workouts to burn calories and improve endurance.</p>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 45 min</span>
+                            <span><i class="fas fa-user"></i> 25 spots</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section class="membership" id="membership">
+        <div class="container">
+            <div class="section-title">
+                <h2>Membership Plans</h2>
+                <p>Choose the plan that fits your fitness goals and budget</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">Rs.500.00 <span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Access to gym facilities</li>
+                        <li>1 Free personal training</li>
+                        <li>Basic workout plan</li>
+                        <li>No group classes</li>
+                        <li>No locker access</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-tag">Popular</div>
+                    <h3>Standard</h3>
+                    <div class="price">Rs. 1000<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Access to gym facilities</li>
+                        <li>4 Free personal trainings</li>
+                        <li>Custom workout plan</li>
+                        <li>Access to group classes</li>
+                        <li>Locker access</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear what our members say about their experience with us</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Joining PowerFit was the best decision I made for my health. The trainers are knowledgeable and supportive, and I've lost 20 pounds in just 3 months!"</p>
+                    <h4>Sarah Johnson</h4>
+                </div>
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The variety of classes keeps me motivated. I especially love the Crossfit sessions. The community here is amazing and keeps me coming back."</p>
+                    <h4>Michael Chen</h4>
+                </div>
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"As a beginner, I was nervous about joining a gym, but the staff made me feel comfortable right away. My trainer created a perfect plan for my goals."</p>
+                    <h4>Emma Rodriguez</h4>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Have questions? Reach out to us and we'll be happy to help</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>We're open for any suggestion or just to have a chat</p>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Fitness Street, Health City, HC 12345</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@powerfitgym.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 6:00 AM - 10:00 PM<br>Sat-Sun: 8:00 AM - 8:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>PowerFit Gym is dedicated to helping you achieve your fitness goals with state-of-the-art facilities and expert trainers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#classes">Classes</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Classes</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Crossfit Training</a></li>
+                        <li><a href="#">Yoga & Meditation</a></li>
+                        <li><a href="#">Cardio Blast</a></li>
+                        <li><a href="#">Weight Lifting</a></li>
+                        <li><a href="#">Pilates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 PowerFit Gym. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    
+
+   
+    </div>
+
+    <script type="module" src="dashboardjs.js">  </script>
+</body>
+</html>

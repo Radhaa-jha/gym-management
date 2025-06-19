@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Diet Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="dietcss.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-dumbbell"></i>
+                <h1>FITPRO DIET MANAGER</h1>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn active">
+                    <i class="fas fa-utensils"></i> Diet Details
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Diet List Section -->
+            <div class="section fade-in">
+                <div class="section-title">
+                    <i class="fas fa-apple-alt"></i>
+                    <h2>Today's Meals</h2>
+                </div>
+
+                <div id="meals-container">
+                    <!-- Meals will be added here dynamically -->
+                    <div class="meal-card">
+                        <button class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <div class="meal-header">
+                            <div class="meal-title">Breakfast</div>
+                            <div class="meal-time">8:00 AM</div>
+                        </div>
+                        <div class="food-item">
+                            <div class="food-name">Oatmeal with berries</div>
+                            <div class="calories">320 cal</div>
+                        </div>
+                        <div class="food-item">
+                            <div class="food-name">Protein shake</div>
+                            <div class="calories">180 cal</div>
+                        </div>
+                        <div class="food-item">
+                            <div class="food-name">Boiled eggs (2)</div>
+                            <div class="calories">140 cal</div>
+                        </div>
+                        <div class="totals">
+                            <div>Total: </div>
+                            <div class="calories">640 cal</div>
+                        </div>
+                    </div>
+
+                    <div class="meal-card">
+                        <button class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <div class="meal-header">
+                            <div class="meal-title">Lunch</div>
+                            <div class="meal-time">1:00 PM</div>
+                        </div>
+                        <div class="food-item">
+                            <div class="food-name">Grilled chicken breast</div>
+                            <div class="calories">330 cal</div>
+                        </div>
+                        <div class="food-item">
+                            <div class="food-name">Brown rice</div>
+                            <div class="calories">220 cal</div>
+                        </div>
+                        <div class="food-item">
+                            <div class="food-name">Steamed vegetables</div>
+                            <div class="calories">120 cal</div>
+                        </div>
+                        <div class="totals">
+                            <div>Total: </div>
+                            <div class="calories">670 cal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Meal Section -->
+            <div class="section fade-in">
+                <div class="section-title">
+                    <i class="fas fa-plus-circle"></i>
+                    <h2>Add New Meal</h2>
+                </div>
+
+                <form id="meal-form">
+                    <div class="form-group">
+                        <label for="meal-type"><i class="fas fa-utensils"></i> Meal Type</label>
+                        <select class="form-control" id="meal-type" required>
+                            <option value="">Select meal type</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="snack">Snack</option>
+                        </select>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label for="meal-time"><i class="fas fa-clock"></i> Time</label>
+                        <input type="time" class="form-control" id="meal-time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="food-name"><i class="fas fa-carrot"></i> Food Name</label>
+                        <input type="text" class="form-control" id="food-name" placeholder="Enter food name" required>
+                    </div>
+                    
+
+                    <div class="nutrition-grid">
+                        <div class="form-group">
+                            <label for="calories"><i class="fas fa-fire"></i> Calories</label>
+                            <input type="number" class="form-control" id="calories" placeholder="Calories" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="protein"><i class="fas fa-dumbbell"></i> Protein (g)</label>
+                            <input type="number" class="form-control" id="protein" placeholder="Protein grams" min="0" step="0.1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes"><i class="fas fa-sticky-note"></i> Notes</label>
+                        <textarea class="form-control" id="notes" rows="3" placeholder="Any special instructions or notes..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Meal
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 FITPRO Gym Management System | Diet & Nutrition Module</p>
+            <p>Designed for fitness professionals and athletes</p>
+        </footer>
+    </div>
+
+    <script type="module" src="diet.js"> </script>
+</body>
+</html>

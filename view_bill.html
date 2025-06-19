@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gym Bill Receipt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0e0e0;
+      margin: 0;
+      padding: 40px;
+      color: #2c2c2c;
+    }
+
+    .receipt-container {
+      max-width: 650px;
+      margin: auto;
+      background-color: #f8f8f8;
+      padding: 35px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+      border: 1px solid #ccc;
+    }
+
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    .receipt-header h2 {
+      margin: 0;
+      font-size: 26px;
+      border-bottom: 2px solid #999;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .receipt-info {
+      margin: 16px 0;
+      font-size: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid #dcdcdc;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .receipt-info span.label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .thank-you {
+      text-align: center;
+      font-size: 18px;
+      color: #2d862d;
+      margin-top: 25px;
+    }
+
+    #downloadBtn {
+      display: none;
+      margin: 30px auto 10px;
+      padding: 12px 24px;
+      background-color: #4a4a4a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+    }
+
+    #downloadBtn:hover {
+      background-color: #333;
+    }
+
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    h3 {
+      text-align: center;
+      margin-top: 40px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="receipt-container" id="billContainer">
+    <div class="receipt-header">
+      <h2>Gym Bill Receipt</h2>
+    </div>
+    <div class="receipt-info"><span class="label">Name:</span> <span id="name"></span></div>
+    <div class="receipt-info"><span class="label">Email:</span> <span id="email"></span></div>
+    <div class="receipt-info"><span class="label">Age:</span> <span id="age"></span></div>
+    <div class="receipt-info"><span class="label">Plan:</span> <span id="plan"></span></div>
+    <div class="receipt-info"><span class="label">Payment Method:</span> <span id="paymentMethod"></span></div>
+    <div class="receipt-info"><span class="label">Amount Paid:</span> ₹<span id="amount"></span></div>
+    <div class="receipt-info"><span class="label">Date:</span> <span id="date"></span></div>
+    <div class="receipt-info"><span class="label">Invoice ID:</span> <span id="invoiceId"></span></div>
+    <div class="thank-you">✅ Thank you for choosing our gym!</div>
+  </div>
+
+  <button id="downloadBtn">Download PDF</button>
+
+  <div class="error-message" id="errorMsg"></div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+    //add your firebase configuration
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    onAuthStateChanged(auth, (user) => {
+      const errorMsg = document.getElementById("errorMsg");
+      const container = document.getElementById("billContainer");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      if (user) {
+        const billsRef = ref(db, "bills");
+
+        get(billsRef).then(snapshot => {
+          if (snapshot.exists()) {
+            let found = false;
+            snapshot.forEach(childSnapshot => {
+              const data = childSnapshot.val();
+              if (data.email === user.email) {
+                found = true;
+                document.getElementById("name").textContent = data.name || '';
+                document.getElementById("email").textContent = data.email || '';
+                document.getElementById("age").textContent = data.age || '';
+                document.getElementById("plan").textContent = data.plan || '';
+                document.getElementById("paymentMethod").textContent = data.paymentMethod || '';
+                document.getElementById("amount").textContent = data.amount || '';
+                document.getElementById("date").textContent = data.date || '';
+                document.getElementById("invoiceId").textContent = data.invoiceId || '';
+
+                downloadBtn.style.display = "block";
+              }
+            });
+
+            if (!found) {
+             container.innerHTML = `<h3>No bill found for ${user.email}</h3>`;
+
+              downloadBtn.style.display = "none";
+            }
+          } else {
+           container.innerHTML = `<h3>No bills available in database.</h3>`;
+
+            downloadBtn.style.display = "none";
+          }
+        }).catch(error => {
+          errorMsg.textContent = "Error fetching bill: " + error.message;
+          downloadBtn.style.display = "none";
+        });
+
+      } else {
+        container.innerHTML = "<h3>Please login to view your bill.</h3>";
+        downloadBtn.style.display = "none";
+      }
+    });
+  </script>
+
+  <!-- html2pdf.js CDN for PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const bill = document.getElementById("billContainer");
+      const opt = {
+        margin:       0.5,
+        filename:     'gym-bill-receipt.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(bill).save();
+    });
+  </script>
+
+</body>
+</html>

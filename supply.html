@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitFuel | Premium Supplements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="supplycss.css">
+</head>
+<body>
+    <!-- Overlay for modal -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Item added to cart!</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-dumbbell"></i>
+                <h1>FitPro</h1>
+            </div>
+            <div class="header-actions">
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="container">
+            <h2> Supplements for Peak Performance</h2>
+            <p>Discover our science-backed formulas designed to enhance your workouts, accelerate recovery, and support your fitness goals.</p>
+            <button class="btn btn-primary">Shop Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="container">
+        <div class="section-title fade-in">
+            <i class="fas fa-capsules"></i>
+            <h2>Performance Supplements</h2>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <i class="fas fa-weight"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Whey Protein Isolate</h3>
+                    <span class="product-category">Protein</span>
+                    <p class="product-description">Ultra-pure protein with 25g per serving, low carb and fat. Ideal for muscle recovery.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rs.390.99</div>
+                        <button class="add-to-cart" data-id="1" data-name="Whey Protein Isolate" data-price="39.99" data-icon="fa-weight">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pre-Workout Energizer</h3>
+                    <span class="product-category">Pre-Workout</span>
+                    <p class="product-description">Boost energy, focus and endurance with our advanced pre-workout formula.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rs. 340.99</div>
+                        <button class="add-to-cart" data-id="2" data-name="Pre-Workout Energizer" data-price="34.99" data-icon="fa-bolt">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <i class="fas fa-capsules"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">BCAA Complex</h3>
+                    <span class="product-category">Recovery</span>
+                    <p class="product-description">Essential amino acids to support muscle recovery and reduce fatigue.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rs. 500.99</div>
+                        <button class="add-to-cart" data-id="3" data-name="BCAA Complex" data-price="29.99" data-icon="fa-capsules">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Multivitamin Pack</h3>
+                    <span class="product-category">Vitamins</span>
+                    <p class="product-description">Complete daily vitamins and minerals for optimal health and performance.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rs. 840.99</div>
+                        <button class="add-to-cart" data-id="4" data-name="Multivitamin Pack" data-price="24.99" data-icon="fa-heart">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+           <div class="product-card fade-in">
+                <div class="product-image">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Fat Burner Complex</h3>
+                    <span class="product-category">Weight Loss</span>
+                    <p class="product-description">Thermogenic formula to boost metabolism and support fat loss.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rs. 420.99</div>
+                        <button class="add-to-cart" data-id="5" data-name="Fat Burner Complex" data-price="42.99" data-icon="fa-fire">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Nighttime Recovery</h3>
+                    <span class="product-category">Recovery</span>
+                    <p class="product-description">Slow-release protein to support muscle repair during sleep.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rs. 360.99</div>
+                        <button class="add-to-cart" data-id="6" data-name="Nighttime Recovery" data-price="36.99" data-icon="fa-bed">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Your cart is empty</h3>
+                <p>Add supplements to your cart</p>
+            </div>
+        </div>
+        
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal"> Rs 0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping:</span>
+                <span id="shipping">FREE</span>
+            </div>
+            <div class="summary-row total-row">
+                <span>Total:</span>
+                <span id="total">Rs 0.00</span>
+            </div>
+            
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fas fa-lock"></i> Secure Checkout
+            </button>
+        </div>
+    </div>
+
+   
+    
+    <script type="module" src="buy-supply.js"></script>
+
+</body>
+</html>
